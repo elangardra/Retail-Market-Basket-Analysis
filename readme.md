@@ -68,5 +68,5 @@ df_clean = df_clean.reset_index(drop=True)
 df_clean
 
 ```
-### Data Cleansing Result
+#### Data Cleansing Result
 ![Dataset](https://github.com/elangardra/Retail-Market-Basket-Analysis/blob/master/img/data%20cleaning.jpg)
