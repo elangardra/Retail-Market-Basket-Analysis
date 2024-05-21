@@ -161,5 +161,6 @@ frequent_itemset['product_cnt'] = frequent_itemset['itemsets'].apply(lambda x: l
 frequent_itemset
 ```
 The code applies the Apriori algorithm to the `basket_filter` DataFrame to find frequent itemsets with a minimum support of 0.01 (1%). It sorts the itemsets by their support values in descending order, resets the row indices, and adds a new column `product_cnt` that contains the number of products in each itemset.
-The resulting `frequent_itemset` DataFrame shows the frequent itemsets, their support values, and the number of products in each itemset. This information can be used to identify frequently purchased product combinations and develop effective marketing strategies.
+The resulting `frequent_itemset` DataFrame shows the frequent itemsets, their support values, and the number of products in each itemset. This information can be used to identify frequently purchased product combinations and develop effective marketing strategies. 
+
 ![Dataset](https://github.com/elangardra/Retail-Market-Basket-Analysis/blob/master/img/pattern.jpg)
