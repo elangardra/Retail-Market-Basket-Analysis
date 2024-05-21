@@ -79,3 +79,14 @@ df_clean
 ```
 #### Data Cleansing Result
 ![Dataset](https://github.com/elangardra/Retail-Market-Basket-Analysis/blob/master/img/data%20cleaning.jpg)
+ Column | Non-Null Count | Dtype |
+| --- | --- | --- |
+| order_id | 350092 non-null | object |
+| product_code | 350092 non-null | object |
+| product_name | 350092 non-null | object |
+| quantity | 350092 non-null | int64 |
+| order_date | 350092 non-null | object |
+| price | 350092 non-null | float64 |
+| customer_id | 350092 non-null | object |
+| date | 350092 non-null | datetime64[ns] |
+| amount | 350092 non-null | float64 |
