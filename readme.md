@@ -90,3 +90,31 @@ df_clean
 | customer_id | 350092 non-null | object |
 | date | 350092 non-null | datetime64[ns] |
 | amount | 350092 non-null | float64 |
+
+## Creating the Basket DataFrame
+
+After performing the data cleaning process, the next step is to create a basket DataFrame that will be used for market basket analysis. This basket DataFrame is created using the `pivot_table` function from the Pandas library.
+
+```python
+import pandas as pd
+
+basket = pd.pivot_table(df_clean, index='order_id', columns='product_name', values='product_code', aggfunc='nunique', fill_value=0)
+```
+This basket DataFrame enables analyses such as identifying frequently purchased product combinations or performing market basket analysis.
+- `pd.pivot_table(df_clean, ...)` creates a pivot table from the `df_clean` DataFrame, which has been cleaned in the previous step.
+ - `df_clean` is the DataFrame resulting from the data cleaning process.
+
+- `index='order_id'` sets the 'order_id' column as the row index in the pivot table.
+ - Each row in the pivot table will represent a single order_id.
+
+- `columns='product_name'` sets the 'product_name' column as the column names in the pivot table.
+ - Each column in the pivot table will represent a unique product.
+
+- `values='product_code'` uses the values from the 'product_code' column to fill the cells in the pivot table.
+ - The value in each cell will indicate the number of unique product codes for that combination of order_id and product_name.
+
+- `aggfunc='nunique'` uses the `nunique` function to count the number of unique values in each cell of the pivot table.
+ - This means each cell will contain the count of unique product codes for that combination of order_id and product_name.
+
+- `fill_value=0` fills empty cells with the value 0.
+ - If there is a combination of order_id and product_name with no data, that cell will be filled with 0.
