@@ -148,4 +148,18 @@ basket_filter = basket_encode[(basket_encode>0).sum(axis=1)>1]
 basket_filter
 ```
 The code creates a new DataFrame `basket_filter` that contains only rows from `basket_encode` where the sum of `True` values (products present) across each row is greater than 1. This filters out transactions with only one unique product, as they do not provide useful information for identifying product combinations.
-![Dataset](https://github.com/elangardra/Retail-Market-Basket-Analysis/blob/master/img/encoding.jpg)
+
+## Finding Frequent Itemsets Using Apriori
+
+After retrieving transactions with more than one unique product, the next step is to use the Apriori algorithm to find frequent itemsets (product combinations) in the shopping baskets.
+
+```python
+from mlxtend.frequent_patterns import apriori
+
+frequent_itemset = apriori(basket_filter, min_support=0.01, use_colnames=True).sort_values('support', ascending=False).reset_index(drop=True)
+frequent_itemset['product_cnt'] = frequent_itemset['itemsets'].apply(lambda x: len(x))
+frequent_itemset
+```
+The code applies the Apriori algorithm to the `basket_filter` DataFrame to find frequent itemsets with a minimum support of 0.01 (1%). It sorts the itemsets by their support values in descending order, resets the row indices, and adds a new column `product_cnt` that contains the number of products in each itemset.
+The resulting `frequent_itemset` DataFrame shows the frequent itemsets, their support values, and the number of products in each itemset. This information can be used to identify frequently purchased product combinations and develop effective marketing strategies.
+![Dataset](https://github.com/elangardra/Retail-Market-Basket-Analysis/blob/master/img/pattern.jpg)
