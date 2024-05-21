@@ -8,50 +8,50 @@ The Apriori algorithm is a popular approach for mining association rules and dis
 
 [Online Retail Dataset](https://github.com/elangardra/Retail-Market-Basket-Analysis/blob/master/Online%20Retail%20Data.csv)
 
-![Dataset](URL/lokasi/gambar.jpg)
+![Dataset](https://github.com/elangardra/Retail-Market-Basket-Analysis/blob/master/img/dataset.jpg)
 ## Data cleansing
- #### membuat kolom date
+ #### Creating the 'date' column
 ```​python
 df_clean = df.copy() # membuat kolom date
 df_clean['date'] = pd.to_datetime(df_clean['order_date']).dt.date.astype('datetime64')
 ```
-#### menghapus semua baris tanpa customer_id
+#### Removing rows without 'customer_id'
 ```
 df_clean = df_clean[~df_clean['customer_id'].isna()]
 ```
-#### mengkonversi customer_id menjadi string
+#### Converting 'customer_id' to string
 ```
 df_clean['customer_id'] = df_clean['customer_id'].astype(str)
 ```
-#### menghapus semua baris tanpa product_name
+#### Removing rows without 'product_name'
 ```
 df_clean = df_clean[~df_clean['product_name'].isna()]
 ```
-#### membuat semua product_name berhuruf kecil
+#### Converting all 'product_name' to lowercase
 ```
 df_clean['product_name'] = df_clean['product_name'].str.lower()
 ```
-#### menghapus semua baris dengan product_code atau product_name test
+#### Removing rows with 'test' in 'product_code' or 'product_name'
 ```
 df_clean = df_clean[(~df_clean['product_code'].str.lower().str.contains('test')) | (~df_clean['product_name'].str.contains('test '))]
 ```
-#### menghapus baris dengan status cancelled, yaitu yang order_id-nya diawali 'C'
+#### Removing rows with canceled status (order_id starting with 'C')
 ```
 df_clean = df_clean[df_clean['order_id'].str[:1]!='C']
 ```
-#### mengubah nilai quantity yang negatif menjadi positif karena nilai negatif tersebut hanya menandakan order tersebut cancelled
+#### Converting negative 'quantity' values to positive
 ```
 df_clean['quantity'] = df_clean['quantity'].abs()
 ```
-#### menghapus baris dengan price bernilai negatif
+#### Removing rows with negative 'price' values
 ```
 df_clean = df_clean[df_clean['price']>0]
 ```
-#### membuat nilai amount, yaitu perkalian antara quantity dan price
+#### Creating the 'amount' value by multiplying 'quantity' and 'price'
 ```
 df_clean['amount'] = df_clean['quantity'] * df_clean['price']
 ```
-#### mengganti product_name dari product_code yang memiliki beberapa product_name dengan salah satu product_name-nya yang paling sering muncul
+#### Replacing 'product_name' with the most frequent one for each 'product_code'
 ```
 most_freq_product_name = df_clean.groupby(['product_code','product_name'], as_index=False).agg(order_cnt=('order_id','nunique')).sort_values(['product_code','order_cnt'], ascending=[True,False])
 most_freq_product_name['rank'] = most_freq_product_name.groupby('product_code')['order_cnt'].rank(method='first', ascending=False)
@@ -60,7 +60,7 @@ df_clean = df_clean.merge(most_freq_product_name.rename(columns={'product_name':
 df_clean['product_name'] = df_clean['most_freq_product_name']
 df_clean = df_clean.drop(columns='most_freq_product_name')
 ```
-### menghapus outlier
+#### Removing outliers using z-score
 ```
 from scipy import stats
 df_clean = df_clean[(np.abs(stats.zscore(df_clean[['quantity','amount']]))<3).all(axis=1)]
@@ -68,4 +68,5 @@ df_clean = df_clean.reset_index(drop=True)
 df_clean
 
 ```
+### Data Cleansing Result
 ![Dataset](https://github.com/elangardra/Retail-Market-Basket-Analysis/blob/master/img/data%20cleaning.jpg)
