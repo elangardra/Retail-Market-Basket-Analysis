@@ -178,9 +178,9 @@ product_association
 The resulting `product_association` DataFrame contains the association rules, their antecedents (if), consequents (then), support, confidence, and other relevant metrics.
 Some examples of the association rules found:
 
-If `red hanging heart t-light holder` is purchased, then `white hanging heart t-light holder` is likely to be purchased as well, with a confidence of 0.722222.
-If `sweetheart ceramic trinket box` is purchased, then `strawberry ceramic trinket box` is likely to be purchased as well, with a confidence of 0.760487.
-If `toilet metal sign` is purchased, then `bathroom metal sign` is likely to be purchased as well, with a confidence of 0.804938.
+- If `red hanging heart t-light holder` is purchased, then `white hanging heart t-light holder` is likely to be purchased as well, with a confidence of 0.722222.
+- If `sweetheart ceramic trinket box` is purchased, then `strawberry ceramic trinket box` is likely to be purchased as well, with a confidence of 0.760487.
+- If `toilet metal sign` is purchased, then `bathroom metal sign` is likely to be purchased as well, with a confidence of 0.804938.
 
 These association rules can provide valuable insights for product recommendations, cross-selling strategies, and optimizing product placements in the retail store or e-commerce platform.
 
