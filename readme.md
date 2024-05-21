@@ -10,6 +10,7 @@ The Apriori algorithm is a popular approach for mining association rules and dis
 
 ![Dataset](https://github.com/elangardra/Retail-Market-Basket-Analysis/blob/master/img/dataset.jpg)
 ## Data cleansing
+The data cleansing process aims to detect and handle any issues present in the dataset, so that we can have clean and ready-to-use data for analysis or modeling. Some of the steps we will take in this process include:
  #### Creating the 'date' column
 ```​python
 df_clean = df.copy() # membuat kolom date
