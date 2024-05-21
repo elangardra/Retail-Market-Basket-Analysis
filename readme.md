@@ -164,6 +164,25 @@ The code applies the Apriori algorithm to the `basket_filter` DataFrame to find 
 The resulting `frequent_itemset` DataFrame shows the frequent itemsets, their support values, and the number of products in each itemset. This information can be used to identify frequently purchased product combinations and develop effective marketing strategies. 
 
 ![Dataset](https://github.com/elangardra/Retail-Market-Basket-Analysis/blob/master/img/pattern.jpg)
+## Finding Association Rules
+
+After finding the frequent itemsets, the final step is to generate association rules from these itemsets using the `association_rules` function.
+
+```python
+from mlxtend.frequent_patterns import association_rules
+
+product_association = association_rules(frequent_itemset, metric='confidence', min_threshold=0.7).sort_values(['support', 'confidence'], ascending=[False, False]).reset_index(drop=True)
+product_association
+```
+![Dataset](https://github.com/elangardra/Retail-Market-Basket-Analysis/blob/master/img/product_association.jpg)
+The resulting `product_association` DataFrame contains the association rules, their antecedents (if), consequents (then), support, confidence, and other relevant metrics.
+Some examples of the association rules found:
+
+If `red hanging heart t-light holder` is purchased, then `white hanging heart t-light holder` is likely to be purchased as well, with a confidence of 0.722222.
+If `sweetheart ceramic trinket box` is purchased, then `strawberry ceramic trinket box` is likely to be purchased as well, with a confidence of 0.760487.
+If `toilet metal sign` is purchased, then `bathroom metal sign` is likely to be purchased as well, with a confidence of 0.804938.
+
+These association rules can provide valuable insights for product recommendations, cross-selling strategies, and optimizing product placements in the retail store or e-commerce platform.
 
 ## Insight and Recommendations
 
