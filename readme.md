@@ -7,8 +7,16 @@ The Apriori algorithm is a popular approach for mining association rules and dis
 ## Dataset
 
 [Online Retail Dataset](https://github.com/elangardra/Retail-Market-Basket-Analysis/blob/master/Online%20Retail%20Data.csv)
-
 ![Dataset](https://github.com/elangardra/Retail-Market-Basket-Analysis/blob/master/img/dataset.jpg)
+his dataset contains order information from an e-commerce platform. The dataset consists of the following columns:
+
+- `order_id`: A unique identifier assigned to each order placed by a customer.
+- `product_code`: A unique code representing the product ordered.
+- `product_name`: The name or description of the product ordered.
+- `quantity`: The number of units of the product ordered.
+- `order_date`: The date and time when the order was placed.
+- `price`: The price per unit of the product.
+- `customer_id`: A unique identifier for the customer who placed the order.
 ## Data cleansing
 The data cleansing process aims to detect and handle any issues present in the dataset, so that we can have clean and ready-to-use data for analysis or modeling. Some of the steps we will take in this process include:
  #### Creating the 'date' column
