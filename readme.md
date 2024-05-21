@@ -118,3 +118,23 @@ This basket DataFrame enables analyses such as identifying frequently purchased 
 
 - `fill_value=0` fills empty cells with the value 0.
  - If there is a combination of order_id and product_name with no data, that cell will be filled with 0.
+## Encoding the Basket DataFrame
+
+After creating the `basket` DataFrame, the next step is to encode its values with `True` for all values above 0 and `False` for all values equal to 0. This is done to simplify the representation of transaction data, where `True` indicates that a particular product is present in the shopping basket, and `False` indicates that the product is not present.
+
+```python
+def encode(x):
+   if x == 0:
+       return False
+   if x > 0:
+       return True
+
+basket_encode = basket.applymap(encode)
+```
+- `def encode(x):` defines the `encode` function that will encode each value in the DataFrame.
+ - This function takes a value `x` and returns `True` if `x` is greater than 0, and `False` if `x` is equal to 0.
+
+- `basket_encode = basket.applymap(encode)` applies the `encode` function to each value in the `basket` DataFrame using the `applymap` method.
+ - The result is a new DataFrame `basket_encode` containing `True` for all values above 0 and `False` for all values equal to 0.
+
+
