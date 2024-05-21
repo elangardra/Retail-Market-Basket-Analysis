@@ -136,7 +136,7 @@ basket_encode = basket.applymap(encode)
 
 - `basket_encode = basket.applymap(encode)` applies the `encode` function to each value in the `basket` DataFrame using the `applymap` method.
  - The result is a new DataFrame `basket_encode` containing `True` for all values above 0 and `False` for all values equal to 0.
- - 
+![Dataset](https://github.com/elangardra/Retail-Market-Basket-Analysis/blob/master/img/pivot%20market%20basket.jpg)
 ## Retrieving Transactions with More Than One Unique Product
 
 After encoding the `basket` DataFrame, the next step is to retrieve only transactions that have more than one unique product. This is done to focus the analysis on shopping baskets containing more than one product, allowing us to identify patterns of frequently purchased product combinations.
@@ -148,4 +148,4 @@ basket_filter = basket_encode[(basket_encode>0).sum(axis=1)>1]
 basket_filter
 ```
 The code creates a new DataFrame `basket_filter` that contains only rows from `basket_encode` where the sum of `True` values (products present) across each row is greater than 1. This filters out transactions with only one unique product, as they do not provide useful information for identifying product combinations.
-
+![Dataset](https://github.com/elangardra/Retail-Market-Basket-Analysis/blob/master/img/encoding.jpg)
